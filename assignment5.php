@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Assignment 4">
+    <meta name="description" content="Assignment 5">
     <meta name="author" content="Adam Pine">
     <link rel="icon" href="favicon.ico">
 
@@ -36,26 +36,11 @@
         <div class="container">
 
             <div class="starter-template">
-                <p>This page will read and print out the first 10 lines of the Assignment3.php file</p>
                 <div class="panel panel-success">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Printout of assignment3.php</h3>
+                        <h3 class="panel-title"></h3>
                     </div>
                     <div class="panel-body">
-                        <?php
-                        //Read in the file
-                        $myfile = fopen("assignment3.php", "r") or die("Unable to open file!");
-                        //put the print out into a textarea.
-                        echo("<textarea readonly='true' style='width:100%;height:500px;'>");
-                        for ($i=0; $i<10; $i++) {
-                            echo fgets($myfile);
-                            //echo("\n");
-                        }
-                        //This keeps the formatting as well.
-                        echo("</textarea>");
-                        fclose($myfile);
-                    ?>
-
                     </div>
                 </div>
 
