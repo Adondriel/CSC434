@@ -28,6 +28,7 @@
     <![endif]-->
     <!-- FontAwesome Icon CDN include -->
     <script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
+    <?php include("assets/classes/db.php"); ?>
 </head>
 
 <body>
@@ -41,6 +42,55 @@
                         <h3 class="panel-title"></h3>
                     </div>
                     <div class="panel-body">
+                        <?php
+                        echo "<table class='table table-striped table-hover'>";
+                        echo "<tr><th>ID</th><th>Condition</th><th>Name</th><th>Manufacturer</th><th>Price</th><th>Stock</th><th>Screen Size</th><th>Resolution</th></tr>";
+
+
+                        try {
+                            $conn = get_Connection();
+                            $stmt = $conn->prepare("SELECT * FROM TV"); 
+                            //get the data from the table.
+                            $stmt->execute();
+
+                            // set the resulting array to associative
+                            //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                            foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                echo $v;
+                            }
+                        }
+                        catch(PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+                        echo "</table>";
+                    ?>
+                            <?php
+                        //print out the start of the table
+                        echo "<table class='table table-striped table-hover'>";
+                        echo "<tr><th>ID</th><th>Condition</th><th>Name</th><th>Manufacturer</th><th>Price</th><th>Stock</th><th>Ram</th><th>CPU Manufacturer</th><th>Graphics Card</th></tr>";
+
+
+                        try {
+                            $conn = get_Connection();
+                            $stmt = $conn->prepare("SELECT * FROM COMPUTER"); 
+                            //get the data from the table.
+                            $stmt->execute();
+
+                            // set the resulting array to associative
+                            //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                            foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                echo $v;
+                            }
+                        }
+                        catch(PDOException $e) {
+                            echo "Error: " . $e->getMessage();
+                        }
+                        $conn = null;
+                        echo "</table>";
+                    ?>
                     </div>
                 </div>
 
