@@ -14,6 +14,8 @@ function get_Connection(){
         return null;
     }
 }
+
+//This is a helper class that helps format the data into a table.
 class TableRows extends RecursiveIteratorIterator { 
     function __construct($it) { 
         //ill figure out what this does later, W3Schools gave me this class to make data population easier.

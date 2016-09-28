@@ -28,7 +28,7 @@
     <![endif]-->
     <!-- FontAwesome Icon CDN include -->
     <script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
-    <?php include("assets/classes/db.php"); ?>
+    <?php include("assets/classes/db_lib.php"); ?>
 </head>
 
 <body>
@@ -43,6 +43,8 @@
                     </div>
                     <div class="panel-body">
                         <?php
+                        //This will call the createTables() method, and then insert random data into the tables.
+                        generateRandomItems();
                         echo "<table class='table table-striped table-hover'>";
                         echo "<tr><th>ID</th><th>Condition</th><th>Name</th><th>Manufacturer</th><th>Price</th><th>Stock</th><th>Screen Size</th><th>Resolution</th></tr>";
 
@@ -55,7 +57,8 @@
 
                             // set the resulting array to associative
                             //Basically this just sets all the table results, to the appropriate vars in the PHP object.
-                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                            $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                            //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by certain conditions.
                             foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
                                 echo $v;
                             }
@@ -81,6 +84,7 @@
                             // set the resulting array to associative
                             //Basically this just sets all the table results, to the appropriate vars in the PHP object.
                             $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+                            //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by certain conditions.
                             foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
                                 echo $v;
                             }

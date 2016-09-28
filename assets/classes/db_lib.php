@@ -34,7 +34,7 @@
             ";
             //use exec because no results are returned.
             $conn->exec($sql);
-            echo "Tables created successfully";
+            //echo "Tables created successfully";
         }catch(PDOException $e){
             //catch any errors.
             echo $sql . "<br>" . $e->getMessage();

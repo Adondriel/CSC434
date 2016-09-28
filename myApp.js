@@ -3,13 +3,13 @@ var app = angular.module('myApp', [])
     .controller('myController', ['$scope', function ($scope) {
         $scope.projectList = {
             "mainProject": {
-                "title": "Assignment 4",
-                "desc": "This project will read the assignment3.php file and print out the first 10 lines of text from the file.",
+                "title": "Assignment 5",
+                "desc": "This project creates the tables for TV and Computer from assignment3, and then randomly fills it with 10 items.",
                 "img": "assets/images/html5.jpg",
                 "links": [
                     {
-                        "url": "assignment4.php",
-                        "urlWords": "Assignment 4 Page"
+                        "url": "assignment5.php",
+                        "urlWords": "Assignment 5 Page"
                     },
                     {
                         "url": "https://github.com/Adondriel/CSC434",
@@ -18,6 +18,21 @@ var app = angular.module('myApp', [])
                 ]
             },
             "projects": [
+                {
+                    "title": "Assignment 4",
+                    "desc": "This project will read the assignment3.php file and print out the first 10 lines of text from the file.",
+                    "img": "assets/images/html5.jpg",
+                    "links": [
+                        {
+                            "url": "assignment4.php",
+                            "urlWords": "Assignment 4 Page"
+                        },
+                        {
+                            "url": "https://github.com/Adondriel/CSC434",
+                            "urlWords": "Github Repository"
+                        }
+                ]
+                },
                 {
                     "title": "Assignment 3",
                     "desc": "This project required me to create a php page, with classes and different data types and way to manipulate that data.",
