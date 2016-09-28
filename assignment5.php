@@ -43,14 +43,20 @@
                     </div>
                     <div class="panel-body">
                         <?php
+                        //
+                        // START TV TABLE:
+                        //
                         //This will call the createTables() method, and then insert random data into the tables.
                         generateRandomItems();
                         echo "<table class='table table-striped table-hover'>";
+                        //print out the table headers row.
                         echo "<tr><th>ID</th><th>Condition</th><th>Name</th><th>Manufacturer</th><th>Price</th><th>Stock</th><th>Screen Size</th><th>Resolution</th></tr>";
 
 
                         try {
+                            //get the connection
                             $conn = get_Connection();
+                            //prepare the sql statement.
                             $stmt = $conn->prepare("SELECT * FROM TV"); 
                             //get the data from the table.
                             $stmt->execute();
@@ -58,8 +64,9 @@
                             // set the resulting array to associative
                             //Basically this just sets all the table results, to the appropriate vars in the PHP object.
                             $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                            //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by certain conditions.
+                            //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by whether or not the row has children.
                             foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                //print out the table rows and the table data items.
                                 echo $v;
                             }
                         }
@@ -68,15 +75,19 @@
                         }
                         $conn = null;
                         echo "</table>";
-                    ?>
-                            <?php
+                    //
+                    //START COMPUTER TABLE:
+                    //
                         //print out the start of the table
                         echo "<table class='table table-striped table-hover'>";
+                        //print out the table headers row.
                         echo "<tr><th>ID</th><th>Condition</th><th>Name</th><th>Manufacturer</th><th>Price</th><th>Stock</th><th>Ram</th><th>CPU Manufacturer</th><th>Graphics Card</th></tr>";
 
 
                         try {
+                            //get the connection
                             $conn = get_Connection();
+                            //prepare the sql statement.
                             $stmt = $conn->prepare("SELECT * FROM COMPUTER"); 
                             //get the data from the table.
                             $stmt->execute();
@@ -84,8 +95,10 @@
                             // set the resulting array to associative
                             //Basically this just sets all the table results, to the appropriate vars in the PHP object.
                             $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
-                            //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by certain conditions.
+                            
+                            //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by whether or not the row has children.
                             foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                //print out the table rows and the table data items.
                                 echo $v;
                             }
                         }
@@ -97,8 +110,6 @@
                     ?>
                     </div>
                 </div>
-
-
             </div>
         </div>
         <!-- /.container -->

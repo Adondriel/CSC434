@@ -1,4 +1,5 @@
 <?php
+    //Author: Adam Pine
     include("db.php");
     include("amazon_lib.php");
 
@@ -44,7 +45,9 @@
     }
 
     function insertTv($value){
+        //get the connection
         $conn = get_Connection();
+        //setup all the variables needed to insert. Make sure the strings are wrapped in quotes correctly.
         $cond = $conn->quote($value->getCondition());
         $name = $conn->quote($value->getName());
         $manuf = $conn->quote($value->getManufacturer());
@@ -54,18 +57,24 @@
         $resolution = $conn->quote($value->getResolution());
         
         try{
+            //prepare the sql statement that needs to be run, insert the variables. at this point,
+            //I don't need to specify which var is in which order, but I can do that later if needed.
             $sql = "INSERT INTO TV VALUES (DEFAULT, $cond, $name, $manuf, $price, $stock, $screenSize, $resolution);";
+            //use exec() because it doesn't return any data when I run this statement. 
             $conn->exec($sql);
         }catch(PDOException $e){
             //catch any errors.
             echo $sql . "<br>" . $e->getMessage();
         }
+        //close the connection (this uses PDO which closes the connection in a different way than the MySQLi plugin thing.)
         $conn=null;
 
     }
 
     function insertComputer($value){
+        //get the connection
         $conn = get_Connection();
+        //setup all the variables needed to insert. Make sure the strings are wrapped in quotes correctly.
         $cond = $conn->quote($value->getCondition());
         $name = $conn->quote($value->getName());
         $manuf = $conn->quote($value->getManufacturer());
@@ -77,7 +86,10 @@
 
         
         try{
+            //prepare the sql statement that needs to be run, insert the variables. at this point,
+            //I don't need to specify which var is in which order, but I can do that later if needed.
             $sql = "INSERT INTO COMPUTER VALUES (DEFAULT, $cond, $name, $manuf, $price, $stock, $ram, $cpuManu, $gcard);";
+            //use exec() because it doesn't return any data when I run this statement. 
             $conn->exec($sql);
         }catch(PDOException $e){
             //catch any errors.
@@ -89,25 +101,22 @@
 
 
     //generate random set of 10 items for each item type and insert them into the DB.
-    function generateRandomItems(){
-        $tvArray = array();
-        $compArray = array();
-
+    function generateRandomItems(){        
+        //in order to not create 5milion entries, run the createTables() function, which will drop the table if it already exists, then recreate it.
         createTables();
         for ($i = 0; $i < 10; $i++){
+            //create new variables
             $myTV = new TV();
             $myComp = new Computer();
 
+            //tell the new variables to randomize their parent vars, their constructor already randomizes their personal vars.
             $myTV->RandomizeParentVars();
             $myComp->RandomizeParentVars();
 
-            //insertTv($myTV->getCondition(), $myTV->getName(), $myTV->getManufacturer(), $myTV->getPrice(), $myTV->getStock(), $myTV->getScreenSize(), $myTV->getResolution() );
-            insertTv($myTV);
-            
-            //insertComp($myComp->getCondition(), $myComp->getName(), $myComp->getManufacturer(), $myComp->getPrice(), $myComp->getStock(), $myComp->getRam(), $myComp->getCPUManu(), $myComp->getGCard());
+            //insert the tv object into the database.
+            insertTv($myTV);       
+            //insert the computer object into the database.
             insertComputer($myComp);
-            $tvArray[] = $myTV;
-            $compArray[] = $myComp;
         }
     }   
 ?>
