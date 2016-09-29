@@ -55,7 +55,31 @@
                         echo("</textarea>");
                         fclose($myfile);
                     ?>
+                    </div>
+                </div>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            assignment4.php source code:
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1>Click this link to visit the Github Directory for this assignment:  <a href="https://github.com/Adondriel/CSC434">https://github.com/Adondriel/CSC434</a></h1>
+                        <h3>Files Used, find in github, or find them below:</h3>
+                        <ul>
+                            <li>assignment4.php</li>
+                            <li>assignment3.php</li>
+                        </ul>
+                        <div style="text-align:left;">
+                            <p>
 
+                                <?php echo("Assignment 4: \n"); show_source('assignment4.php'); ?>
+                            </p>
+                            <p>
+                                <?php echo("Assignment 3: \n"); show_source('assignment3.php'); ?>
+
+                            </p>
+                        </div>
                     </div>
                 </div>
 

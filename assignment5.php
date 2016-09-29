@@ -110,6 +110,45 @@
                     ?>
                     </div>
                 </div>
+                <!--//end table panel -->
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            assignment5.php source code:
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1>Click this link to visit the Github Directory for this assignment:  <a href="https://github.com/Adondriel/CSC434">https://github.com/Adondriel/CSC434</a></h1>
+                        <h3>Files Used, find in github, or find them below:</h3>
+                        <ul>
+                            <li>assignment5.php</li>
+                            <li>assets/classes/db_lib.php</li>
+                            <li>assets/classes/db.php - (From what I can tell, my webhost's database is not accessable remotely, so this is semi-secure... still not very secure tho.)</li>
+                        </ul>
+                        <div style="text-align:left;">
+                            <p>
+                                <?php 
+                                    echo("<h1>**************************** <br /> db_lib.php <br /> ****************************</h1><br />");
+                                    show_source('assets/classes/db_lib.php'); 
+                                ?>
+                            </p>
+                            <p>
+                                <?php 
+                                    echo("<h1>**************************** <br /> db.php <br /> ****************************</h1><br />");
+                                    show_source('assets/classes/db.php'); 
+                                ?>
+                            </p>
+                            <p>
+                                <?php 
+                                    echo("<h1>**************************** <br /> assignment5.php: <br /> ****************************</h1><br />");
+                                    show_source('assignment5.php'); 
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <!-- /.container -->

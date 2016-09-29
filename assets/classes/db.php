@@ -2,7 +2,8 @@
 //Author: Adam Pine
 function get_Connection(){
     //set the vars to connect to the database.
-    $servername = "localhost";
+    //use 127.0.0.1 instead of localhost because localhost makes my local mysql take ~15-30 seconds to respond.
+    $servername = "127.0.0.1";
     $username = "adamunbh_csc434";
     $password = "ThisAccountWillBeDeleted";
     try {
@@ -17,8 +18,9 @@ function get_Connection(){
 }
 
 //Src: W3Schools provided the code, but I made sure to figure out how it actually functions, and why.
-//Recursive iterator helps us iterate through and interator, or basically this helps us make a table out of a "2D array" from the table results.
+//Recursive iterator helps us iterate through an interator, or basically this helps us make a table out of a "2D array" from the table results.
 class TableRows extends RecursiveIteratorIterator { 
+    //this calls the parent constructor, and tells it that there are 0 constants.
     function __construct($it) { 
         parent::__construct($it, self::LEAVES_ONLY); 
     }
