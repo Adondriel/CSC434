@@ -47,6 +47,7 @@
                         // START TV TABLE:
                         //
                         //This will call the createTables() method, and then insert random data into the tables.
+                        createTables();
                         generateRandomItems();
                         echo "<table class='table table-striped table-hover'>";
                         //print out the table headers row.

@@ -1,7 +1,7 @@
 <?php
     //Author: Adam Pine
-    include("db.php");
-    include("amazon_lib.php");
+    require_once("db.php");
+    require_once("amazon_lib.php");
 
 
     function createTables(){
@@ -103,7 +103,7 @@
     //generate random set of 10 items for each item type and insert them into the DB.
     function generateRandomItems(){        
         //in order to not create 5milion entries, run the createTables() function, which will drop the table if it already exists, then recreate it.
-        createTables();
+        //createTables();
         for ($i = 0; $i < 10; $i++){
             //create new variables
             $myTV = new TV();

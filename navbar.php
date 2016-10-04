@@ -19,6 +19,7 @@
                     <li <?php if($currentPage=="assignment3.php" ){echo( "class='active'");} ?>><a href="assignment3.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 3</a></li>
                     <li <?php if($currentPage=="assignment4.php" ){echo( "class='active'");} ?>><a href="assignment4.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 4</a></li>
                     <li <?php if($currentPage=="assignment5.php" ){echo( "class='active'");} ?>><a href="assignment5.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 5</a></li>
+                    <li <?php if($currentPage=="assignment6.php" ){echo( "class='active'");} ?>><a href="assignment6.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 6</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->
