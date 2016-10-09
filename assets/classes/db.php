@@ -38,4 +38,24 @@ class TableRows extends RecursiveIteratorIterator {
     } 
 }
 
+//prints out all the variables as options to be surrounded by a select object.
+class SelectOptionRow extends RecursiveIteratorIterator { 
+    //this calls the parent constructor, and tells it that there are 0 constants.
+    function __construct($it) { 
+        parent::__construct($it, self::LEAVES_ONLY); 
+    }
+    //this gets the current data value, for the current child, and surrounds it with <td> </td> so that it is formatted by the table correctly.
+    function current() {
+        return " | " . parent::current();
+    }
+    //when we start to read the row, print out a <tr>
+    function beginChildren() { 
+        echo "<option value='".parent::current()."'>";
+    } 
+    //when we don't have anymore children left in this row, end the row with </tr> and a \n.
+    function endChildren() { 
+        echo "</option>";
+    } 
+}
+
 ?>

@@ -313,10 +313,185 @@
                                 insertTV($myTV);
                                 
                                 //echo("<p>Inserted TV</p>"); 
-                        }
-                        
+                        }                        
                         ?>
+                    </div>
+                </div>
 
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Update Data</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-md-8">
+                            <select>
+                                <?php
+                                try {
+                                    //get the connection
+                                    $conn = get_Connection();
+                                    //prepare the sql statement.
+                                    $stmt = $conn->prepare("SELECT * FROM COMPUTER;"); 
+                                    //get the data from the table.
+                                    $stmt->execute();
+
+                                    // set the resulting array to associative
+                                    //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+                                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                    //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by whether or not the row has children.
+                                    foreach(new SelectOptionRow(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                    //print out the table rows and the table data items.
+                                        echo $v;
+                                    }                                
+                                }
+                                catch(PDOException $e) {
+                                    echo "Error: " . $e->getMessage();
+                                }
+                                $conn = null;
+                                ?>
+                            </select>
+                            <form class="form-horizontal" name="updateComputer" action="" method="post">
+                                <fieldset>
+                                    <legend>Update Computer</legend>
+                                    <input type="text" name="method" value="updateComputer" hidden="true" />
+                                    <input type="text" name="compId" value="0" hidden="true" />
+
+                                    <div class="form-group">
+                                        <label for="compCondi" class="col-lg-4 control-label">Computer Condition:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="compCondi" name="compCondi" placeholder="Used">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-lg-4 control-label">Item Name:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Computer">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="manuf" class="col-lg-4 control-label">Manufacturer:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="manuf" name="manuf" placeholder="Lenovo">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price" class="col-lg-4 control-label">Price:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="price" name="price" placeholder="499.99">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock" class="col-lg-4 control-label">Stock:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="stock" name="stock" placeholder="50">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ram" class="col-lg-4 control-label">RAM:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="ram" name="ram" placeholder="16GB">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cpuManuf" class="col-lg-4 control-label">CPU Manufacturer:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="cpuManuf" name="cpuManuf" placeholder="Intel">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="gcard" class="col-lg-4 control-label">Graphics Card:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="gcard" name="gcard" placeholder="GTX 1080">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-12 col-lg-offset-4">
+                                            <button type="submit" class="btn btn-primary">Insert new Computer</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="col-md-8">
+                            <select>
+                                <?php
+                                try {
+                                    //get the connection
+                                    $conn = get_Connection();
+                                    //prepare the sql statement.
+                                    $stmt = $conn->prepare("SELECT * FROM TV;"); 
+                                    //get the data from the table.
+                                    $stmt->execute();
+
+                                    // set the resulting array to associative
+                                    //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+                                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                    //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by whether or not the row has children.
+                                    foreach(new SelectOptionRow(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                    //print out the table rows and the table data items.
+                                        echo $v;
+                                    }                                
+                                }
+                                catch(PDOException $e) {
+                                    echo "Error: " . $e->getMessage();
+                                }
+                                $conn = null;
+                                ?>
+                            </select>
+                            <form class="form-horizontal" name="insertTV" action="" method="post">
+                                <fieldset>
+                                    <legend>Update TV</legend>
+                                    <input type="text" name="method" value="insertTV" hidden="true" />
+                                    <div class="form-group">
+                                        <label for="condi" class="col-lg-4 control-label">Computer Condition:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="condi" name="condi" placeholder="Used">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name" class="col-lg-4 control-label">Item Name:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="TV">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="manuf" class="col-lg-4 control-label">Manufacturer:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="manuf" name="manuf" placeholder="LG">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price" class="col-lg-4 control-label">Price:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="price" name="price" placeholder="499.99">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="stock" class="col-lg-4 control-label">Stock:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="stock" name="stock" placeholder="50">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reso" class="col-lg-4 control-label">Resolution:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="reso" name="reso" placeholder="1920x1080">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="screenSize" class="col-lg-4 control-label">Screen Size:</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" id="screenSize" name="screenSize" placeholder='40"'>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="col-lg-12 col-lg-offset-4 ">
+                                            <button type="submit" class="btn btn-primary ">Insert new TV</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
 
