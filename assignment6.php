@@ -29,6 +29,7 @@
     <!-- FontAwesome Icon CDN include -->
     <script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
     <?php require_once("assets/classes/db_lib.php"); ?>
+    <?php require_once("assets/classes/formSubmit.php"); ?>
 </head>
 
 <body>
@@ -42,18 +43,6 @@
                         <h3 class="panel-title">Create Tables</h3>
                     </div>
                     <div class="panel-body">
-                        <?php 
-                            if(isset($_POST['method']) && $_POST['method'] == 'createTables')
-                            {
-                                createTables();
-                                echo("<p>Tables created</p>");
-                            }
-                            if(isset($_POST['method']) && $_POST['method'] == 'randomizeData')
-                            {
-                                generateRandomItems();
-                                echo("<p>Data randomized!</p>");
-                            }
-                        ?>
                             <form class="form-horizontal" name="formCreateTables" action="" method="post">
                                 <fieldset>
                                     <legend>Create Tables</legend>
