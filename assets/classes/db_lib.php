@@ -71,6 +71,34 @@
 
     }
 
+    function updateTv($value){
+        //get the connection
+        $conn = get_Connection();
+        //setup all the variables needed to insert. Make sure the strings are wrapped in quotes correctly.
+        $id = $value->TVId;
+        $cond = $conn->quote($value->getCondition());
+        $name = $conn->quote($value->getName());
+        $manuf = $conn->quote($value->getManufacturer());
+        $price = $value->getPrice();
+        $stock = $value->getStock();
+        $screenSize = $conn->quote($value->getScreenSize());
+        $resolution = $conn->quote($value->getResolution());
+        
+        try{
+            //prepare the sql statement that needs to be run, insert the variables. at this point,
+            //I don't need to specify which var is in which order, but I can do that later if needed.
+            $sql = "UPDATE TV SET tvCondition=$cond, tvName=$name, manufacturer=$manuf, price=$price, stock=$stock, screenSize=$screenSize, resolution=$resolution WHERE TVId=$id";
+            //use exec() because it doesn't return any data when I run this statement. 
+            $conn->exec($sql);
+        }catch(PDOException $e){
+            //catch any errors.
+            echo $sql . "<br>" . $e->getMessage();
+        }
+        //close the connection (this uses PDO which closes the connection in a different way than the MySQLi plugin thing.)
+        $conn=null;
+
+    }
+
     function insertComputer($value){
         //get the connection
         $conn = get_Connection();
@@ -89,6 +117,35 @@
             //prepare the sql statement that needs to be run, insert the variables. at this point,
             //I don't need to specify which var is in which order, but I can do that later if needed.
             $sql = "INSERT INTO COMPUTER VALUES (DEFAULT, $cond, $name, $manuf, $price, $stock, $ram, $cpuManu, $gcard);";
+            //use exec() because it doesn't return any data when I run this statement. 
+            $conn->exec($sql);
+        }catch(PDOException $e){
+            //catch any errors.
+            echo $sql . "<br>" . $e->getMessage();
+        }
+        
+        $conn=null;
+    }
+
+    function updateComputer($value){
+        //get the connection
+        $conn = get_Connection();
+        $id = $value->compId;
+        //setup all the variables needed to insert. Make sure the strings are wrapped in quotes correctly.
+        $cond = $conn->quote($value->getCondition());
+        $name = $conn->quote($value->getName());
+        $manuf = $conn->quote($value->getManufacturer());
+        $price = $value->getPrice();
+        $stock = $value->getStock();
+        $ram = $conn->quote($value->getRam());
+        $cpuManu = $conn->quote($value->getCPUManu());
+        $gcard = $conn->quote($value->getGCard());
+
+        
+        try{
+            //prepare the sql statement that needs to be run, insert the variables. at this point,
+            //I don't need to specify which var is in which order, but I can do that later if needed.
+            $sql = "UPDATE COMPUTER SET compCondition=$cond, name=$name, manufacturer=$manuf, price=$price, stock=$stock, Ram=$ram, CpuManu=$cpuManu, GCard=$gcard WHERE compId=$id";
             //use exec() because it doesn't return any data when I run this statement. 
             $conn->exec($sql);
         }catch(PDOException $e){
@@ -118,5 +175,7 @@
             //insert the computer object into the database.
             insertComputer($myComp);
         }
-    }   
+    }
+
+
 ?>

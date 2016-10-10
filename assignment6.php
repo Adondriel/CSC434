@@ -29,7 +29,9 @@
     <!-- FontAwesome Icon CDN include -->
     <script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
     <?php require_once("assets/classes/db_lib.php"); ?>
-    <?php require_once("assets/classes/formSubmit.php"); ?>
+        <?php require_once("assets/classes/formSubmit.php"); ?>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 </head>
 
 <body>
@@ -43,28 +45,28 @@
                         <h3 class="panel-title">Create Tables</h3>
                     </div>
                     <div class="panel-body">
-                            <form class="form-horizontal" name="formCreateTables" action="" method="post">
-                                <fieldset>
-                                    <legend>Create Tables</legend>
-                                    <input type="text" name="method" value="createTables" hidden="true" />
-                                    <div class="form-group">
-                                        <div class="col-lg-3">
-                                            <button type="submit" class="btn btn-primary">Create Tables</button>
-                                        </div>
+                        <form class="form-horizontal" name="formCreateTables" action="" method="post">
+                            <fieldset>
+                                <legend>Create Tables</legend>
+                                <input type="text" name="method" value="createTables" hidden="true" />
+                                <div class="form-group">
+                                    <div class="col-lg-3">
+                                        <button type="submit" class="btn btn-primary">Create Tables</button>
                                     </div>
-                                </fieldset>
-                            </form>
-                            <form class="form-horizontal" name="formRandomizeData" action="" method="post">
-                                <fieldset>
-                                    <legend>Insert 10 randomized items of each type</legend>
-                                    <input type="text" name="method" value="randomizeData" hidden="true" />
-                                    <div class="form-group">
-                                        <div class="col-lg-3">
-                                            <button type="submit" class="btn btn-primary">Randomize Data</button>
-                                        </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                        <form class="form-horizontal" name="formRandomizeData" action="" method="post">
+                            <fieldset>
+                                <legend>Insert 10 randomized items of each type</legend>
+                                <input type="text" name="method" value="randomizeData" hidden="true" />
+                                <div class="form-group">
+                                    <div class="col-lg-3">
+                                        <button type="submit" class="btn btn-primary">Randomize Data</button>
                                     </div>
-                                </fieldset>
-                            </form>
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
 
@@ -79,7 +81,7 @@
                                     <legend>Insert Computer</legend>
                                     <input type="text" name="method" value="insertComputer" hidden="true" />
                                     <div class="form-group">
-                                        <label for="compCondi" class="col-lg-4 control-label">Computer Condition:</label>
+                                        <label for="compCondi" class="col-lg-4 control-label">Condition:</label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control" id="compCondi" name="compCondi" placeholder="Used">
                                         </div>
@@ -141,7 +143,7 @@
                                     <legend>Insert TV</legend>
                                     <input type="text" name="method" value="insertTV" hidden="true" />
                                     <div class="form-group">
-                                        <label for="condi" class="col-lg-4 control-label">Computer Condition:</label>
+                                        <label for="condi" class="col-lg-4 control-label">Condition:</label>
                                         <div class="col-lg-8">
                                             <input type="text" class="form-control" id="condi" name="condi" placeholder="Used">
                                         </div>
@@ -190,120 +192,6 @@
                                 </fieldset>
                             </form>
                         </div>
-                        <?php
-                        if(isset($_POST['method']) && $_POST['method'] == 'insertComputer')
-                            {
-                                /*Table structure:
-                                compCondition
-                                name
-                                manufacturer
-                                price - double
-                                stock - stock
-                                ram
-                                CpuManu
-                                GCard
-                                */
-                                $compCondition = " ";
-                                $name = " ";
-                                $manufacturer = " ";
-                                $price = 0.0;
-                                $stock = 0;
-                                $ram = " ";
-                                $CpuManu = " ";
-                                $GCard = " ";
-
-                                if (isset($_POST['compCondi'])){
-                                    $compCondition = htmlentities($_POST['compCondi']);
-                                }
-                                if (isset($_POST['name'])){
-                                    $name = htmlentities($_POST['name']);
-                                }
-                                if (isset($_POST['manuf'])){
-                                    $manufacturer = htmlentities($_POST['manuf']);
-                                }
-                                if (isset($_POST['price']) && is_numeric($_POST['price'])){
-                                    $price = (double)$_POST['price'];
-                                }
-                                if (isset($_POST['stock']) && is_numeric($_POST['stock'])){
-                                    $stock = (int)$_POST['stock'];
-                                }
-                                if (isset($_POST['ram'])){
-                                    $ram = htmlentities($_POST['ram']);
-                                }
-                                if (isset($_POST['cpuManuf'])){
-                                    $CpuManu = htmlentities($_POST['cpuManuf']);
-                                }
-                                if (isset($_POST['gcard'])){
-                                    $GCard = htmlentities($_POST['gcard']);
-                                }
-                                $myComp = new Computer();
-                                $myComp->setCondition($compCondition);
-                                $myComp->setName($name);
-                                $myComp->setManufacturer($manufacturer);
-                                $myComp->setPrice($price);
-                                $myComp->setStock($stock);
-                                $myComp->setRam($ram);
-                                $myComp->setCPUManu($CpuManu);
-                                $myComp->setGCard($GCard);
-                                
-                                insertComputer($myComp);
-                                
-                                //echo("<p>Inserted Computer</p>"); 
-                        }
-                        if(isset($_POST['method']) && $_POST['method'] == 'insertTV')
-                        {
-                                /*Table structure:
-                                Condition
-                                name
-                                manufacturer
-                                price - double
-                                stock - stock
-                                screenSize
-                                resolution
-                                */
-                                $condition = "";
-                                $name = "";
-                                $manufacturer = "";
-                                $price = 0.0;
-                                $stock = 0;
-                                $reso = "";
-                                $screenSize = "";
-
-                                if (isset($_POST['condi'])){
-                                    $condition = htmlentities($_POST['condi']);
-                                }
-                                if (isset($_POST['name'])){
-                                    $name = htmlentities($_POST['name']);
-                                }
-                                if (isset($_POST['manuf'])){
-                                    $manufacturer = htmlentities($_POST['manuf']);
-                                }
-                                if (isset($_POST['price']) && is_numeric($_POST['price'])){
-                                    $price = (double)$_POST['price'];
-                                }
-                                if (isset($_POST['stock']) && is_numeric($_POST['stock'])){
-                                    $stock = (int)$_POST['stock'];
-                                }
-                                if (isset($_POST['reso'])){
-                                    $resolutiion = htmlentities($_POST['reso']);
-                                }
-                                if (isset($_POST['screenSize'])){
-                                    $screenSize = htmlentities($_POST['screenSize']);
-                                }
-                                $myTV = new TV();
-                                $myTV->setCondition($condition);
-                                $myTV->setName($name);
-                                $myTV->setManufacturer($manufacturer);
-                                $myTV->setPrice($price);
-                                $myTV->setStock($stock);
-                                $myTV->setResolution($reso);
-                                $myTV->setScreenSize($screenSize);
-                                
-                                insertTV($myTV);
-                                
-                                //echo("<p>Inserted TV</p>"); 
-                        }                        
-                        ?>
                     </div>
                 </div>
 
@@ -313,88 +201,128 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-8">
-                            <select>
+                            <select id="ComputerSelector">
+                                <option value="-1">Please Select a Computer entry to update.</option>
                                 <?php
-                                try {
-                                    //get the connection
-                                    $conn = get_Connection();
-                                    //prepare the sql statement.
-                                    $stmt = $conn->prepare("SELECT * FROM COMPUTER;"); 
-                                    //get the data from the table.
-                                    $stmt->execute();
-
-                                    // set the resulting array to associative
-                                    //Basically this just sets all the table results, to the appropriate vars in the PHP object.
-                                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                    //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by whether or not the row has children.
-                                    foreach(new SelectOptionRow(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
-                                    //print out the table rows and the table data items.
-                                        echo $v;
-                                    }                                
-                                }
-                                catch(PDOException $e) {
-                                    echo "Error: " . $e->getMessage();
-                                }
-                                $conn = null;
-                                ?>
+                                    try {
+                                        //get the connection
+                                        $conn = get_Connection();
+                                        //prepare the sql statement.
+                                        $stmt = $conn->prepare("SELECT * FROM COMPUTER;"); 
+                                        //get the data from the table.
+                                        $stmt->execute();
+    
+                                        // set the resulting array to associative
+                                        //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+                                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                        //TableRows are defined in db.php, they just help wrap the different values in <td>/<tr> determined by whether or not the row has children.
+                                        foreach(new SelectOptionRow(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
+                                        //print out the table rows and the table data items.
+                                            echo $v;
+                                        }                                
+                                    }
+                                    catch(PDOException $e) {
+                                        echo "Error: " . $e->getMessage();
+                                    }
+                                    $conn = null;
+                                    ?>
                             </select>
+                            <script type="text/javascript">
+                                //This function will update the form fields, when the select box is changed.
+                                //So that the user is truly updating the previous data, rather than having to reenter it again.
+                                $(document).ready(function() {
+                                    $('#ComputerSelector').change(function() {
+                                        if ($('#ComputerSelector').val() !== "-1") {
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: 'assets/classes/formSubmit.php', // change name
+                                                data: 'compId=' + $('#ComputerSelector').val(), // country id
+                                                dataType: 'json',
+                                                success: function(data) { // returns date
+                                                    //console.info(data);
+                                                    $('#updateCompCondi').val(data[0].compCondition);
+                                                    $('#updateCompName').val(data[0].name);
+                                                    $('#updateCompManuf').val(data[0].manufacturer);
+                                                    $('#updateCompPrice').val(data[0].price);
+                                                    $('#updateCompStock').val(data[0].stock);
+                                                    $('#updateCpuManuf').val(data[0].CpuManu);
+                                                    $('#updateGCard').val(data[0].GCard);
+                                                    $('#updateCompRam').val(data[0].Ram);
+                                                    $('#hidCompId').val(data[0].compId);
+                                                }
+                                            });
+                                        } else {
+                                            $('#updateCompCondi').val("");
+                                            $('#updateCompName').val("");
+                                            $('#updateCompManuf').val("");
+                                            $('#updateCompPrice').val("");
+                                            $('#updateCompStock').val("");
+                                            $('#updateCpuManuf').val("");
+                                            $('#updateGCard').val("");
+                                            $('#updateCompRam').val("");
+                                            $('#hidCompId').val("-1");
+                                        }
+                                    });
+                                });
+
+                            </script>
                             <form class="form-horizontal" name="updateComputer" action="" method="post">
                                 <fieldset>
                                     <legend>Update Computer</legend>
                                     <input type="text" name="method" value="updateComputer" hidden="true" />
-                                    <input type="text" name="compId" value="0" hidden="true" />
+                                    <input type="text" id="hidCompId" name="compId" value="-1" hidden="true" />
 
                                     <div class="form-group">
-                                        <label for="compCondi" class="col-lg-4 control-label">Computer Condition:</label>
+                                        <label class="col-lg-4 control-label">Condition:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="compCondi" name="compCondi" placeholder="Used">
+                                            <input type="text" class="form-control" id="updateCompCondi" name="compCondi" placeholder="Used">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-lg-4 control-label">Item Name:</label>
+                                        <label class="col-lg-4 control-label">Item Name:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Computer">
+                                            <input type="text" class="form-control" id="updateCompName" name="name" placeholder="Computer">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="manuf" class="col-lg-4 control-label">Manufacturer:</label>
+                                        <label class="col-lg-4 control-label">Manufacturer:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="manuf" name="manuf" placeholder="Lenovo">
+                                            <input type="text" class="form-control" id="updateCompManuf" name="manuf" placeholder="Lenovo">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="price" class="col-lg-4 control-label">Price:</label>
+                                        <label class="col-lg-4 control-label">Price:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="price" name="price" placeholder="499.99">
+                                            <input type="text" class="form-control" id="updateCompPrice" name="price" placeholder="499.99">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock" class="col-lg-4 control-label">Stock:</label>
+                                        <label class="col-lg-4 control-label">Stock:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="stock" name="stock" placeholder="50">
+                                            <input type="text" class="form-control" id="updateCompStock" name="stock" placeholder="50">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="ram" class="col-lg-4 control-label">RAM:</label>
+                                        <label class="col-lg-4 control-label">RAM:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="ram" name="ram" placeholder="16GB">
+                                            <input type="text" class="form-control" id="updateCompRam" name="ram" placeholder="16GB">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cpuManuf" class="col-lg-4 control-label">CPU Manufacturer:</label>
+                                        <label class="col-lg-4 control-label">CPU Manufacturer:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="cpuManuf" name="cpuManuf" placeholder="Intel">
+                                            <input type="text" class="form-control" id="updateCpuManuf" name="cpuManuf" placeholder="Intel">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="gcard" class="col-lg-4 control-label">Graphics Card:</label>
+                                        <label class="col-lg-4 control-label">Graphics Card:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="gcard" name="gcard" placeholder="GTX 1080">
+                                            <input type="text" class="form-control" id="updateGCard" name="gcard" placeholder="GTX 1080">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-lg-12 col-lg-offset-4">
-                                            <button type="submit" class="btn btn-primary">Insert new Computer</button>
+                                            <button type="submit" class="btn btn-primary">Update Computer</button>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -402,7 +330,8 @@
                         </div>
 
                         <div class="col-md-8">
-                            <select>
+                            <select id="tvSelector">
+                                <option value="-1">Please Select a TV entry to update.</option>
                                 <?php
                                 try {
                                     //get the connection
@@ -427,55 +356,94 @@
                                 $conn = null;
                                 ?>
                             </select>
-                            <form class="form-horizontal" name="insertTV" action="" method="post">
+                            <script type="text/javascript">
+                                //This function will update the form fields, when the select box is changed.
+                                //So that the user is truly updating the previous data, rather than having to reenter it again.
+                                $(document).ready(function() {
+                                    $('#tvSelector').change(function() {
+                                        if ($('#tvSelector').val() !== "-1") {
+                                            $.ajax({
+                                                type: 'GET',
+                                                url: 'assets/classes/formSubmit.php', // change name
+                                                data: 'tvId=' + $('#tvSelector').val(), // country id
+                                                dataType: 'json',
+                                                success: function(data) { // returns date
+                                                    console.info(data);
+                                                    $('#updateTVCondi').val(data[0].tvCondition);
+                                                    $('#updateTVName').val(data[0].tvName);
+                                                    $('#updateTVManuf').val(data[0].manufacturer);
+                                                    $('#updateTVPrice').val(data[0].price);
+                                                    $('#updateTVStock').val(data[0].stock);
+                                                    $('#updateTVReso').val(data[0].resolution);
+                                                    $('#updateTVScreenSize').val(data[0].screenSize);
+                                                    $('#hidTVId').val(data[0].TVId);
+                                                }
+                                            });
+                                        } else {
+                                            $('#updateTVCondi').val("");
+                                            $('#updateTVName').val("");
+                                            $('#updateTVManuf').val("");
+                                            $('#updateTVPrice').val("");
+                                            $('#updateTVStock').val("");
+                                            $('#updateTVReso').val("");
+                                            $('#updateTVScreenSize').val("");
+                                            $('#hidTVId').val("-1");
+                                        }
+                                    });
+                                });
+
+                            </script>
+                            <form class="form-horizontal" name="updateTV" action="" method="post">
                                 <fieldset>
                                     <legend>Update TV</legend>
-                                    <input type="text" name="method" value="insertTV" hidden="true" />
+                                    <input type="text" name="method" value="updateTV" hidden="true" />
+                                    <input type="text" id="hidTVId" name="tvId" value="-1" hidden="true" />
+
                                     <div class="form-group">
-                                        <label for="condi" class="col-lg-4 control-label">Computer Condition:</label>
+                                        <label class="col-lg-4 control-label">Condition:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="condi" name="condi" placeholder="Used">
+                                            <input type="text" class="form-control" id="updateTVCondi" name="condi" placeholder="Used">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-lg-4 control-label">Item Name:</label>
+                                        <label class="col-lg-4 control-label">Item Name:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="TV">
+                                            <input type="text" class="form-control" id="updateTVName" name="name" placeholder="TV">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="manuf" class="col-lg-4 control-label">Manufacturer:</label>
+                                        <label class="col-lg-4 control-label">Manufacturer:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="manuf" name="manuf" placeholder="LG">
+                                            <input type="text" class="form-control" id="updateTVManuf" name="manuf" placeholder="LG">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="price" class="col-lg-4 control-label">Price:</label>
+                                        <label class="col-lg-4 control-label">Price:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="price" name="price" placeholder="499.99">
+                                            <input type="text" class="form-control" id="updateTVPrice" name="price" placeholder="499.99">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock" class="col-lg-4 control-label">Stock:</label>
+                                        <label class="col-lg-4 control-label">Stock:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="stock" name="stock" placeholder="50">
+                                            <input type="text" class="form-control" id="updateTVStock" name="stock" placeholder="50">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="reso" class="col-lg-4 control-label">Resolution:</label>
+                                        <label class="col-lg-4 control-label">Resolution:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="reso" name="reso" placeholder="1920x1080">
+                                            <input type="text" class="form-control" id="updateTVReso" name="reso" placeholder="1920x1080">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="screenSize" class="col-lg-4 control-label">Screen Size:</label>
+                                        <label class="col-lg-4 control-label">Screen Size:</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" id="screenSize" name="screenSize" placeholder='40"'>
+                                            <input type="text" class="form-control" id="updateTVScreenSize" name="screenSize" placeholder='40"'>
                                         </div>
                                     </div>
                                     <div class="form-group ">
                                         <div class="col-lg-12 col-lg-offset-4 ">
-                                            <button type="submit" class="btn btn-primary ">Insert new TV</button>
+                                            <button type="submit" class="btn btn-primary ">Update TV</button>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -531,9 +499,9 @@
         <!-- Bootstrap core JavaScript
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script>
             window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+
         </script>
         <script src="../../dist/js/bootstrap.min.js"></script>
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

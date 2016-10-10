@@ -141,6 +141,8 @@
         TV class, extends Item, has special things like ScreenSize, and Resolution.
     */
     class TV extends Item{
+        public $TVId;
+
         //specific to TV.
         private $screenSize;
         private $resolution;        
@@ -162,7 +164,7 @@
             screenSize, Reso, Manuf
         */
         function randomizeVariables(){
-            $ssOpts = array("20\"", "24\"", "32\"", "50\"");
+            $ssOpts = array("20", "24", "32", "50");
             $resoOpts = array("1024x768", "1266x768", "1920x1080", "3440x1440");
             $manufOpts = array("Vizio", "LG", "Other TV Brand");
             //set the screensize to random option.
@@ -211,6 +213,8 @@
         Computer Class, extends Item, has special vars ike Ram, CpuManuf, or Graphics card.
     */
     class Computer extends Item{
+        public $compId;
+
         //all strings specific to Computer
         //the amt of ram for this comp.
         private $ram;
