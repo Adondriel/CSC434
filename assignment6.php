@@ -204,6 +204,7 @@
                             <select id="ComputerSelector">
                                 <option value="-1">Please Select a Computer entry to update.</option>
                                 <?php
+                                //This will generate the Select options from the database results.
                                     try {
                                         //get the connection
                                         $conn = get_Connection();
@@ -235,11 +236,11 @@
                                         if ($('#ComputerSelector').val() !== "-1") {
                                             $.ajax({
                                                 type: 'GET',
-                                                url: 'assets/classes/formSubmit.php', // change name
-                                                data: 'compId=' + $('#ComputerSelector').val(), // country id
+                                                url: 'assets/classes/formSubmit.php',
+                                                data: 'compId=' + $('#ComputerSelector').val(), // comp id
                                                 dataType: 'json',
-                                                success: function(data) { // returns date
-                                                    //console.info(data);
+                                                success: function(data) { // returns data
+                                                    //populate the form fields with the data returned
                                                     $('#updateCompCondi').val(data[0].compCondition);
                                                     $('#updateCompName').val(data[0].name);
                                                     $('#updateCompManuf').val(data[0].manufacturer);
@@ -252,6 +253,7 @@
                                                 }
                                             });
                                         } else {
+                                            //otherwise, clear the form out.
                                             $('#updateCompCondi').val("");
                                             $('#updateCompName').val("");
                                             $('#updateCompManuf').val("");
@@ -266,6 +268,7 @@
                                 });
 
                             </script>
+                            <!--Form for updating a computer item-->
                             <form class="form-horizontal" name="updateComputer" action="" method="post">
                                 <fieldset>
                                     <legend>Update Computer</legend>
@@ -364,11 +367,11 @@
                                         if ($('#tvSelector').val() !== "-1") {
                                             $.ajax({
                                                 type: 'GET',
-                                                url: 'assets/classes/formSubmit.php', // change name
-                                                data: 'tvId=' + $('#tvSelector').val(), // country id
+                                                url: 'assets/classes/formSubmit.php',
+                                                data: 'tvId=' + $('#tvSelector').val(), // tvid
                                                 dataType: 'json',
-                                                success: function(data) { // returns date
-                                                    console.info(data);
+                                                success: function(data) { // returns data for givenID
+                                                    //console.info(data);
                                                     $('#updateTVCondi').val(data[0].tvCondition);
                                                     $('#updateTVName').val(data[0].tvName);
                                                     $('#updateTVManuf').val(data[0].manufacturer);
@@ -464,12 +467,18 @@
                         <h3>Files Used, find in github, or find them below:</h3>
                         <ul>
                             <li>assignment6.php</li>
+                            <li>assets/classes/formSubmit.php</li>
                             <li>assets/classes/db_lib.php</li>
                             <li>assets/classes/db.php - (From what I can tell, my webhost's database is not accessable remotely, so this is semi-secure... still not very secure though.)</li>
-                            <li>assets/classes/formSubmit.php - (From what I can tell, my webhost's database is not accessable remotely, so this is semi-secure... still not very secure though.)</li>
-
+                            <li>assets/classes/amazon_lib.php</li>
                         </ul>
                         <div style="text-align:left;">
+                            <p>
+                                <?php 
+                                    echo("<h1>**************************** <br /> assignment6.php: <br /> ****************************</h1><br />");
+                                    show_source('assignment6.php'); 
+                                ?>
+                            </p>
                             <p>
                                 <?php 
                                     echo("<h1>**************************** <br /> formSubmit.php <br /> ****************************</h1><br />");
@@ -490,10 +499,11 @@
                             </p>
                             <p>
                                 <?php 
-                                    echo("<h1>**************************** <br /> assignment6.php: <br /> ****************************</h1><br />");
-                                    show_source('assignment6.php'); 
+                                    echo("<h1>**************************** <br /> amazon_lib.php <br /> ****************************</h1><br />");
+                                    show_source('assets/classes/amazon_lib.php'); 
                                 ?>
                             </p>
+
                         </div>
                     </div>
                 </div>

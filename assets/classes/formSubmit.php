@@ -258,15 +258,13 @@
         //prepare the sql statement.
         $id = (int)$_GET['compId'];
         $stmt = $conn->prepare("SELECT * FROM COMPUTER WHERE compId=$id;"); 
-        //get the data from the table.
+        //execute the prepared statement
         $stmt->execute();
-        // set the resulting array to associative
-        //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+        //fetch all the results from that query, as an array, associated by name of cols, to their values
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //encode this array, as a JSON object.
         $json=json_encode($result);
-        echo $json;
-        //echo "hello";
-        //echo($json);
+        //echo $json;
     }
     //this is the thing that populates the field with correct values, when you change the dropdown.
     if(isset($_GET['tvId']))
@@ -276,13 +274,10 @@
         //prepare the sql statement.
         $id = (int)$_GET['tvId'];
         $stmt = $conn->prepare("SELECT * FROM TV WHERE tvId=$id;"); 
-        //get the data from the table.
+        //execute the prepared statement
         $stmt->execute();
-        // set the resulting array to associative
-        //Basically this just sets all the table results, to the appropriate vars in the PHP object.
+        //fetch all the results from that query, as an array, associated by name of cols, to their values
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        //encode this array, as a JSON object.
         $json=json_encode($result);
-        echo $json;
-        //echo "hello";
-        //echo($json);
     }
