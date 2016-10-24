@@ -2,9 +2,6 @@
 //using a guide to make sure I write a very secure login function, 
 //why write something that is insecure if someone else has already figured out how to make sure it is secure.
 
-
-include_once("db.php");
-//Modified function so I don
 function login($email, $password, $mysqli) {
     // Using prepared statements means that SQL injection is not possible. 
     if ($stmt = $mysqli->prepare("SELECT id, username, password 
@@ -81,7 +78,7 @@ function checkbrute($user_id, $mysqli) {
         $stmt->store_result();
  
         // If there have been more than 5 failed logins 
-        if ($stmt->num_rows > 5) {
+        if ($stmt->num_rows > 50) {
             return true;
         } else {
             return false;

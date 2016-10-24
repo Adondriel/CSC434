@@ -24,13 +24,12 @@ function get_MySQLi_Connection(){
     $username = "adamunbh_csc434";
     $password = "ThisAccountWillBeDeleted";
     // Create connection
-    $conn = new mysqli($servername, $username, $password);
+    $conn = new mysqli($servername, $username, $password, "adamunbh_csc434");
 
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
-    } 
-    
+    }    
     return $conn;
 }
 //Src: W3Schools provided the code, but I made sure to figure out how it actually functions, and why.
