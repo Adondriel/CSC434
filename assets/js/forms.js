@@ -1,3 +1,5 @@
+//Author: Adam Pine, but I have to give credit to the tutorial writer.
+//This will hash that password value from the login form, clear the plaintext password and then submit the form to be logged in.
 function formhash(form, password) {
     // Create a new element input, this will be our hashed password field. 
     var p = document.createElement("input");

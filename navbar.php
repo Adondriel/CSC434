@@ -14,12 +14,13 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-                    <li <?php if($currentPage=="html_examples.php" ){echo( "class='active'");} ?>><a href="html_examples.html"><i class="fa fa-code" aria-hidden="true"></i> HTML Examples</a></li>
-                    <li <?php if($currentPage=="php_examples.php" ){echo( "class='active'");} ?>><a href="php_examples.php"><i class="fa fa-code" aria-hidden="true"></i> PHP Examples</a></li>
-                    <li <?php if($currentPage=="assignment3.php" ){echo( "class='active'");} ?>><a href="assignment3.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 3</a></li>
-                    <li <?php if($currentPage=="assignment4.php" ){echo( "class='active'");} ?>><a href="assignment4.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 4</a></li>
-                    <li <?php if($currentPage=="assignment5.php" ){echo( "class='active'");} ?>><a href="assignment5.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 5</a></li>
-                    <li <?php if($currentPage=="assignment6.php" ){echo( "class='active'");} ?>><a href="assignment6.php"><i class="fa fa-code" aria-hidden="true"></i> Assignment 6</a></li>
+                    <li <?php if($currentPage=="html_examples.php" ){echo( "class='active'");} ?>><a href="html_examples.html">HTML Examples</a></li>
+                    <li <?php if($currentPage=="php_examples.php" ){echo( "class='active'");} ?>><a href="php_examples.php">PHP Examples</a></li>
+                    <li <?php if($currentPage=="assignment3.php" ){echo( "class='active'");} ?>><a href="assignment3.php">Assignment 3</a></li>
+                    <li <?php if($currentPage=="assignment4.php" ){echo( "class='active'");} ?>><a href="assignment4.php">Assignment 4</a></li>
+                    <li <?php if($currentPage=="assignment5.php" ){echo( "class='active'");} ?>><a href="assignment5.php">Assignment 5</a></li>
+                    <li <?php if($currentPage=="assignment6.php" ){echo( "class='active'");} ?>><a href="assignment6.php">Assignment 6</a></li>
+                    <li <?php if($currentPage=="assignment7.php" ){echo( "class='active'");} ?>><a href="assignment7.php">Assignment 7</a></li>                    
                 </ul>
             </div>
             <!--/.nav-collapse -->

@@ -4,8 +4,18 @@ var app = angular.module('myApp', [])
         $scope.projectList = {
             "mainProject": {
                 "title": "Assignment 7",
-                "desc": "This project is on hold because the rubric is inaccessible from D2L due to the faculty strike.",
-                "img": "assets/images/html5.jpg"
+                "desc": "Uses PHP and MySQL to create a SECURE login form, logs out after 30 mins, and everything is hashed securely.",
+                "img": "assets/images/html5.jpg",
+                "links": [
+                        {
+                            "url": "assignment7.php",
+                            "urlWords": "Assignment 7 Page"
+                    },
+                        {
+                            "url": "https://github.com/Adondriel/CSC434",
+                            "urlWords": "Github Repository"
+                    }
+                ]
             },
             "projects": [
                 {

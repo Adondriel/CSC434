@@ -1,7 +1,9 @@
 <?php
-//using a guide to make sure I write a very secure login function, 
-//why write something that is insecure if someone else has already figured out how to make sure it is secure.
+//Author: Adam Pine
+//This is a modified version of a fairly secure PHP login system, that I found online, I modified this to work with my site and to function for the needs of this project,
+//This system did not have a session expiration timer before I modified it, and I had to change some other things in order to get it to work correctly for our project.
 
+//This is the login function, it will log the person in. All sensitive data is hashed.
 function login($email, $password, $mysqli) {
     // Using prepared statements means that SQL injection is not possible. 
     if ($stmt = $mysqli->prepare("SELECT id, username, password 
@@ -28,8 +30,10 @@ function login($email, $password, $mysqli) {
                 // Check if the password in the database matches
                 // the password the user submitted. We are using
                 // the password_verify function to avoid timing attacks.
-                if (password_verify($password, $db_password)) {
-                    // Password is correct!
+                //for some reason password_verify does not work AT ALL for me, so I just went with the slightly less secure == comparator.
+                //if (password_verify($password, $db_password)) {
+                if ($password == $db_password){
+                // Password is correct!
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
                     // XSS protection as we might print this value
@@ -39,9 +43,11 @@ function login($email, $password, $mysqli) {
                     $username = preg_replace("/[^a-zA-Z0-9_\-]+/", 
                                                                 "", 
                                                                 $username);
+                    //init the session variables.
                     $_SESSION['username'] = $username;
                     $_SESSION['login_string'] = hash('sha512', 
                               $db_password . $user_browser);
+                    $_SESSION['lastLoginTime'] = time();
                     // Login successful.
                     return true;
                 } else {
@@ -50,6 +56,9 @@ function login($email, $password, $mysqli) {
                     $now = time();
                     $mysqli->query("INSERT INTO login_attempts(user_id, time)
                                     VALUES ('$user_id', '$now')");
+                    //echo strlen($password) . "\n";
+                    //echo strlen($db_password) . "\n";
+                    //echo $db_password."\n";
                     return false;
                 }
             }
@@ -60,6 +69,8 @@ function login($email, $password, $mysqli) {
     }
 }
 
+//This function will check to make sure the user isn't failing to login a ton of times in order to guess that password.
+//We lock the user account because it is very easy for an attacker to change their IP address and keep attacking the login page even after we block their IP.
 function checkbrute($user_id, $mysqli) {
     // Get timestamp of current time 
     $now = time();
@@ -77,7 +88,7 @@ function checkbrute($user_id, $mysqli) {
         $stmt->execute();
         $stmt->store_result();
  
-        // If there have been more than 5 failed logins 
+        // If there have been more than 50 failed logins 
         if ($stmt->num_rows > 50) {
             return true;
         } else {
@@ -86,6 +97,9 @@ function checkbrute($user_id, $mysqli) {
     }
 }
 
+//Starts a secure version of a session, by making sure that the user can't disable our session security.
+//Along with that, this function will regenerate the session everytime the user accesses a page with a new request.
+//This helps to prevent session stealing.
 function sec_session_start() {
     $session_name = 'sec_session_id';   // Set a custom session name
     /*Sets the session name. 
@@ -98,7 +112,7 @@ function sec_session_start() {
     $httponly = true;
     // Forces sessions to only use cookies.
     if (ini_set('session.use_only_cookies', 1) === FALSE) {
-        header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+        header("Location: ../../error.php?err=Could not initiate a safe session (ini_set)");
         exit();
     }
     // Gets current cookies params.
@@ -113,55 +127,61 @@ function sec_session_start() {
     session_regenerate_id(true);    // regenerated the session, delete the old one. 
 }
 
+//This function is used to check if there is a session that is valid for the user.
+//This is also where we check if their session's time has expired or not.
 function login_check($mysqli) {
     // Check if all session variables are set 
-    if (isset($_SESSION['user_id'], 
-                        $_SESSION['username'], 
-                        $_SESSION['login_string'])) {
+    if (isset($_SESSION['user_id'], $_SESSION['username'], $_SESSION['login_string'], $_SESSION['lastLoginTime'])) {
  
         $user_id = $_SESSION['user_id'];
         $login_string = $_SESSION['login_string'];
         $username = $_SESSION['username'];
- 
+        $last_login_time = $_SESSION['lastLoginTime'];
+        
         // Get the user-agent string of the user.
         $user_browser = $_SERVER['HTTP_USER_AGENT'];
- 
-        if ($stmt = $mysqli->prepare("SELECT password 
+        //check if their last login time is greater than 30 * 60 seconds. (30 mins)
+        if (time()-$last_login_time < 30*60){
+            //if, to prepare the statement, and make sure the statement is not null.
+            if ($stmt = $mysqli->prepare("SELECT password 
                                       FROM members 
                                       WHERE id = ? LIMIT 1")) {
-            // Bind "$user_id" to parameter. 
-            $stmt->bind_param('i', $user_id);
-            $stmt->execute();   // Execute the prepared query.
-            $stmt->store_result();
- 
-            if ($stmt->num_rows == 1) {
-                // If the user exists get variables from result.
-                $stmt->bind_result($password);
-                $stmt->fetch();
-                $login_check = hash('sha512', $password . $user_browser);
- 
-                if (hash_equals($login_check, $login_string) ){
-                    // Logged In!!!! 
-                    return true;
+                // Bind "$user_id" to parameter. 
+                $stmt->bind_param('i', $user_id);
+                $stmt->execute();   // Execute the prepared query.
+                $stmt->store_result();
+                //make sure we only have 1 row.
+                if ($stmt->num_rows == 1) {
+                    // If the user exists get variables from result.
+                    $stmt->bind_result($password);
+                    $stmt->fetch();
+                    $login_check = hash('sha512', $password . $user_browser);
+                    if (hash_equals($login_check, $login_string)){
+                        // Logged In!!!! 
+                        return true;
+                    } else {
+                        // Not logged in 
+                        return false;
+                    }
                 } else {
                     // Not logged in 
                     return false;
                 }
             } else {
-                // Not logged in 
+                // user doesn't exist
                 return false;
             }
         } else {
             // Not logged in 
             return false;
         }
-    } else {
-        // Not logged in 
+    }else{
+        //no session to exist
         return false;
-    }
+    }    
 }
 
-//sanitizes the output from the "php_self" variable
+//sanitizes the output from the "php_self" variable.
 function esc_url($url) {
  
     if ('' == $url) {

@@ -3,8 +3,7 @@ include_once 'assets/classes/db.php';
 include_once 'assets/classes/functions.php';
  
 sec_session_start();
-$mysqli = get_MySQLi_Connection();
- 
+
 if (login_check(get_MySQLi_Connection()) == true) {
     $logged = 'in';
 } else {

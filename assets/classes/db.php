@@ -17,6 +17,7 @@ function get_Connection(){
     }
 }
 
+//Get a mysqli connection, rather than a PDO connection for use with the login functionality.
 function get_MySQLi_Connection(){
     //set the vars to connect to the database.
     //use 127.0.0.1 instead of localhost because localhost makes my local mysql take ~15-30 seconds to respond.

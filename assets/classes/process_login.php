@@ -1,4 +1,6 @@
 <?php
+//Author: Adam Pine
+
 include_once 'db.php';
 include_once 'functions.php';
 
@@ -14,11 +16,11 @@ if (isset($_POST['email'], $_POST['p'])) {
         header('Location: ../../assignment7.php');
     } else {
         // Login failed 
-        //header('Location: ../../error.php?error=1');
-        echo $email;
-        echo $password;
+        header('Location: ../../error.php?err=Login Failed.');
+        //echo $password."\n";
     }
 } else {
     // The correct POST variables were not sent to this page. 
     echo 'Invalid Request';
 }
+$mysqli->close();

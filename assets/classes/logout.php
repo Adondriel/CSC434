@@ -1,4 +1,6 @@
 <?php
+//DESTROY EVERYTHING! Delete the vars, clear that session. Log that guy out! 
+//Author: Adam Pine, not modified much from the tutorial's version, location and some other items had to be changed.
 include_once 'functions.php';
 sec_session_start();
  
@@ -18,4 +20,4 @@ setcookie(session_name(),
  
 // Destroy session 
 session_destroy();
-header('Location: ../index.php');
+header('Location: ../../assignment7.php');

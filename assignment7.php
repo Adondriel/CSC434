@@ -41,55 +41,100 @@
 <body>
 
     <?php include("navbar.php"); ?>
-
-        <?php if (login_check(get_MySQLi_Connection()) == true) : ?>
-
             <div class="container">
                 <div class="starter-template">
+        <?php 
+            $mysqli = get_MySQLi_Connection();
+            if (login_check($mysqli) == true) : ?>
+
 
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Create Tables</h3>
+                            <h3 class="panel-title">Logout: </h3>
                         </div>
                         <div class="panel-body">
+                            <li><a href="assets/classes/logout.php">Logout</a></li>
                         </div>
                     </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Welcome: <?php echo $_SESSION['username']; ?> </h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>Database Info: </p>
+                            <?php 
+                                $user_id = $_SESSION['user_id'];
+                                $login_string = $_SESSION['login_string'];
+                                $username = $_SESSION['username'];
+                                $last_login_time = $_SESSION['lastLoginTime'];
+        
+                                // Get the user-agent string of the user.
+                                $user_browser = $_SERVER['HTTP_USER_AGENT'];
+                                //check if their last login time is greater than 30 * 60 seconds. (30 mins)
+                                if (time()-$last_login_time < 30*60){
+                                    //if, to prepare the statement, and make sure the statement is not null.
+                                    if ($stmt = $mysqli->prepare("SELECT id, username, email, password  
+                                                                    FROM members 
+                                                                    WHERE id = ? LIMIT 1")) {
+                                        // Bind "$user_id" to parameter. 
+                                        $stmt->bind_param('i', $user_id);
+                                        $stmt->execute();   // Execute the prepared query.
+                                        $stmt->store_result();
+                                        //bind the results the the diff variables so that we can print them out below.
+                                        $stmt->bind_result($id, $username, $email, $password);
+                                        $stmt->fetch();
+                                        //echo $id . "\n";
+                                        //echo $username . "\n";
+                                        //echo $email . "\n";
+                                        //echo $password . "\n";                                        
+                                    }
+                                }  
+                            ?>
+                            
+                            <p>ID: <?php echo $id; ?>  </p>
+                            <p>Username: <?php echo $username; ?>  </p>
+                            <p>Email: <?php echo $email; ?>  </p>
+                            <p>Password(hashed): <?php echo $password; ?>  </p>
 
+                        </div>
+                    </div>
 
 
                     <div class="panel panel-success">
                         <div class="panel-heading">
                             <h3 class="panel-title">
-                            Assignment 6 source code:
+                            Assignment 7 source code:
                         </h3>
                         </div>
                         <div class="panel-body">
                             <h1>Click this link to visit the Github Directory for this assignment:  <a href="https://github.com/Adondriel/CSC434">https://github.com/Adondriel/CSC434</a></h1>
                             <h3>Files Used, find in github, or find them below:</h3>
                             <ul>
-                                <li>assignment6.php</li>
-                                <li>assets/classes/formSubmit.php</li>
-                                <li>assets/classes/db_lib.php</li>
-                                <li>assets/classes/db.php - (From what I can tell, my webhost's database is not accessable remotely, so this is semi-secure... still not very secure though.)</li>
-                                <li>assets/classes/amazon_lib.php</li>
+                                <li>assignment7.php</li>
+                                <li>assets/classes/functions.php</li>
+                                <li>assets/classes/logout.php</li>
+                                <li>assets/classes/db.php</li>
+                                <li>assets/classes/process_login.php</li>
+                                <li><a href="assets/js/sha512.js">assets/js/sha512.js</a></li>
+                                <li><a href="assets/js/forms.js">assets/js/forms.js</a></li>
                             </ul>
                             <div style="text-align:left;">
                                 <p>
                                     <?php 
-                                    echo("<h1>**************************** <br /> assignment6.php: <br /> ****************************</h1><br />");
-                                    show_source('assignment6.php'); 
+                                    echo("<h1>**************************** <br /> assignment7.php: <br /> ****************************</h1><br />");
+                                    show_source('assignment7.php'); 
                                 ?>
                                 </p>
                                 <p>
                                     <?php 
-                                    echo("<h1>**************************** <br /> formSubmit.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/formSubmit.php'); 
+                                    echo("<h1>**************************** <br /> functions.php <br /> ****************************</h1><br />");
+                                    show_source('assets/classes/functions.php'); 
                                 ?>
                                 </p>
                                 <p>
                                     <?php 
-                                    echo("<h1>**************************** <br /> db_lib.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/db_lib.php'); 
+                                    echo("<h1>**************************** <br /> logout.php <br /> ****************************</h1><br />");
+                                    show_source('assets/classes/logout.php'); 
                                 ?>
                                 </p>
                                 <p>
@@ -100,8 +145,8 @@
                                 </p>
                                 <p>
                                     <?php 
-                                    echo("<h1>**************************** <br /> amazon_lib.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/amazon_lib.php'); 
+                                    echo("<h1>**************************** <br /> process_login.php <br /> ****************************</h1><br />");
+                                    show_source('assets/classes/process_login.php'); 
                                 ?>
                                 </p>
 
@@ -110,14 +155,15 @@
                     </div>
 
 
-                </div>
-            </div>
-            <p>Return to <a href="index.php">login page</a></p>
+
+                <p>Return to <a href="login.php">login page</a></p>
             <?php else : ?>
                 <p>
                     <span class="error">You are not authorized to access this page.</span> Please <a href="login.php">login</a>.
                 </p>
-                <?php endif; ?>
+            <?php endif; ?>
+                                    </div>
+            </div>
 
 
 
