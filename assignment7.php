@@ -80,7 +80,7 @@
                                         $stmt->bind_param('i', $user_id);
                                         $stmt->execute();   // Execute the prepared query.
                                         $stmt->store_result();
-                                        //bind the results the the diff variables so that we can print them out below.
+                                        //bind the results to the diff variables so that we can print them out below.
                                         $stmt->bind_result($id, $username, $email, $password);
                                         $stmt->fetch();
                                         //echo $id . "\n";
@@ -111,6 +111,7 @@
                             <h3>Files Used, find in github, or find them below:</h3>
                             <ul>
                                 <li>assignment7.php</li>
+                                <li>login.php</li>
                                 <li>assets/classes/functions.php</li>
                                 <li>assets/classes/logout.php</li>
                                 <li>assets/classes/db.php</li>
@@ -123,6 +124,12 @@
                                     <?php 
                                     echo("<h1>**************************** <br /> assignment7.php: <br /> ****************************</h1><br />");
                                     show_source('assignment7.php'); 
+                                ?>
+                                </p>
+                                <p>
+                                    <?php 
+                                    echo("<h1>**************************** <br /> login.php: <br /> ****************************</h1><br />");
+                                    show_source('login.php'); 
                                 ?>
                                 </p>
                                 <p>
