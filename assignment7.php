@@ -30,7 +30,9 @@
     <script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
     <?php
         include_once("assets/classes/db.php");
-        include_once("assets/classes/functions.php");    
+        include_once("assets/classes/functions.php"); 
+    
+        sec_session_start();
     ?>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -127,6 +129,7 @@
                     <!-- Placed at the end of the document so the pages load faster -->
                     <script>
                         window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+
                     </script>
                     <script src="../../dist/js/bootstrap.min.js"></script>
                     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
