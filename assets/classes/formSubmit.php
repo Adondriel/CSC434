@@ -264,7 +264,7 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //encode this array, as a JSON object.
         $json=json_encode($result);
-        //echo $json;
+        echo $json;
     }
     //this is the thing that populates the field with correct values, when you change the dropdown.
     if(isset($_GET['tvId']))
@@ -280,4 +280,5 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //encode this array, as a JSON object.
         $json=json_encode($result);
+        echo $json;
     }
