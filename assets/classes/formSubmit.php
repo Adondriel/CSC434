@@ -264,6 +264,7 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //encode this array, as a JSON object.
         $json=json_encode($result);
+        //returns the json data to the requester.
         echo $json;
     }
     //this is the thing that populates the field with correct values, when you change the dropdown.
@@ -280,5 +281,6 @@
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         //encode this array, as a JSON object.
         $json=json_encode($result);
+        //Returns the json data to the requester.
         echo $json;
     }
