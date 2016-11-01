@@ -39,99 +39,242 @@
 </head>
 
 <body>
-
+    <script type="application/javascript">
+        //this is an object.
+        var exampleData = {
+                //this is a string
+                "name": "bob",
+                //this is an int
+                "age": 22,
+                //this is a double.
+                "paycheck": 22.50,
+                //this is an array.
+                "itemsInWallet": [
+                    "Credit Card",
+                    "Cash",
+                    "ID"
+                ]
+            }
+            //function to set the paycheck value.
+        function setDataPaycheck(val) {
+            exampleData.paycheck = val;
+        }
+        //function to print out the data. contains the for loop.
+        function printData() {
+            document.write("Name: " + exampleData.name + "<br>");
+            document.write("Age: " + exampleData.age + "<br>");
+            document.write("Paycheck: " + exampleData.paycheck + "<br>");
+            document.write("Items In Wallet: <br>");
+            for (var i = 0; i < exampleData.itemsInWallet.length; i++) {
+                document.write(exampleData.itemsInWallet[i] + "<br>");
+            }
+        }
+    </script>
     <?php include("navbar.php"); ?>
-            <div class="container">
-                <div class="starter-template">
-                    
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Logout: </h3>
-                        </div>
-                        <div class="panel-body">
-                            <li><a href="assets/classes/logout.php">Logout</a></li>
-                        </div>
-                    </div>
-                   
+        <div class="container">
+            <div class="starter-template">
 
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Example 1</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>This shows the example for using a for loop, as well as using a function.</p>
+                        <p>
+                            <script>
+                                document.write("Before: <br>");
+                                //printData function has the for loop inside of it.
+                                printData();
+
+                                setDataPaycheck(1.50);
+
+                                document.write("<br><br>After: <br>");
+                                printData();
+
+                            </script>
+                        </p>
+                        <textarea readonly='true' style='width:100%;height:500px;'>
+                            <script type="application/javascript">
+                                var exampleData = {
+                                    "name": "bob",
+                                    "age": 22,
+                                    "paycheck": 22.50,
+                                    "itemsInWallet": [
+                                        "Credit Card",
+                                        "Cash",
+                                        "ID"
+                                    ]
+                                }
+
+                                function setDataPaycheck(val) {
+                                    exampleData.paycheck = val;
+                                }
+
+                                function printData() {
+                                    document.write("Name: " + exampleData.name + "<br>");
+                                    document.write("Age: " + exampleData.age + "<br>");
+                                    document.write("Paycheck: " + exampleData.paycheck + "<br>");
+                                    document.write("Items In Wallet: <br>");
+                                    for (var i = 0; i < exampleData.itemsInWallet.length; i++) {
+                                        document.write(exampleData.itemsInWallet[i] + "<br>");
+                                    }
+                                }
+
+                            </script>
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Example 2</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>This example will show an example of a while loop</p>
+                        <p>
+                            <script type="application/javascript">
+                                var text = "";
+                                var i = 0;
+                                while (i < 10) {
+                                    text += "<br>The number is " + i;
+                                    i++;
+                                }
+                                document.write(text);
+
+                            </script>
+                        </p>
+                        <textarea readonly='true' style='width:100%;height:500px;'>
+                            <script type="application/javascript">
+                                var text = "";
+                                var i = 0;
+                                while (i < 10) {
+                                    text += "<br>The number is " + i;
+                                    i++;
+                                }
+                                document.write(text);
+
+                            </script>
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Example 3</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>This example will show the use of a case statement. and if statement.</p>
+                        <script>
+                            var day = "";
+                            switch (new Date().getDay()) {
+                                case 0:
+                                    day = "Sunday";
+                                    break;
+                                case 1:
+                                    day = "Monday";
+                                    break;
+                                case 2:
+                                    day = "Tuesday";
+                                    break;
+                                case 3:
+                                    day = "Wednesday";
+                                    break;
+                                case 4:
+                                    day = "Thursday";
+                                    break;
+                                case 5:
+                                    day = "Friday";
+                                    break;
+                                case 6:
+                                    day = "Saturday";
+                            }
+                            document.write("<br> Today is: " + day);
+                            document.write("<br><br> Is it Tuesday?<br>");
+                            if (day === "Tuesday") {
+                                document.write("Yes, It is tuesday!");
+                            } else {
+                                document.write("No, it is not tuesday!");
+                            }
+                        </script>
+                        <textarea readonly='true' style='width:100%;height:500px;'>
+                        <script>
+                            var day = "";
+                            switch (new Date().getDay()) {
+                                case 0:
+                                    day = "Sunday";
+                                    break;
+                                case 1:
+                                    day = "Monday";
+                                    break;
+                                case 2:
+                                    day = "Tuesday";
+                                    break;
+                                case 3:
+                                    day = "Wednesday";
+                                    break;
+                                case 4:
+                                    day = "Thursday";
+                                    break;
+                                case 5:
+                                    day = "Friday";
+                                    break;
+                                case 6:
+                                    day = "Saturday";
+                            }
+                            document.write("<br> Today is: " + day);
+                            document.write("<br><br> Is it Tuesday?<br>");
+                            if (day === "Tuesday") {
+                                document.write("Yes, It is tuesday!");
+                            } else {
+                                document.write("No, it is not tuesday!");
+                            }
+                        </script>
+                        </textarea>
+                    </div>
+                </div>
+
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
                             Assignment 8 source code:
                         </h3>
+                    </div>
+                    <div class="panel-body">
+                        <h1>Click this link to visit the Github Directory for this assignment:  <a href="https://github.com/Adondriel/CSC434">https://github.com/Adondriel/CSC434</a></h1>
+                        <h3>Files Used, find in github, or find them below:</h3>
+                        <ul>
+                            <li>assignment8.php</li>
+                            
+                        </ul>
+                        <div style="text-align:left;">
+                            <p>
+                                <?php 
+                                    echo("<h1>**************************** <br /> assignment8.php: <br /> ****************************</h1><br />");
+                                    show_source('assignment8.php'); 
+                                ?>
+                            </p>
                         </div>
-                        <div class="panel-body">
-                            <h1>Click this link to visit the Github Directory for this assignment:  <a href="https://github.com/Adondriel/CSC434">https://github.com/Adondriel/CSC434</a></h1>
-                            <h3>Files Used, find in github, or find them below:</h3>
-                            <ul>
-                                <li>assignment7.php</li>
-                                <li>login.php</li>
-                                <li>assets/classes/functions.php</li>
-                                <li>assets/classes/logout.php</li>
-                                <li>assets/classes/db.php</li>
-                                <li>assets/classes/process_login.php</li>
-                                <li><a href="assets/js/sha512.js">assets/js/sha512.js</a></li>
-                                <li><a href="assets/js/forms.js">assets/js/forms.js</a></li>
-                            </ul>
-                            <div style="text-align:left;">
-                                <p>
-                                    <?php 
-                                    echo("<h1>**************************** <br /> assignment7.php: <br /> ****************************</h1><br />");
-                                    show_source('assignment7.php'); 
-                                ?>
-                                </p>
-                                <p>
-                                    <?php 
-                                    echo("<h1>**************************** <br /> login.php: <br /> ****************************</h1><br />");
-                                    show_source('login.php'); 
-                                ?>
-                                </p>
-                                <p>
-                                    <?php 
-                                    echo("<h1>**************************** <br /> functions.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/functions.php'); 
-                                ?>
-                                </p>
-                                <p>
-                                    <?php 
-                                    echo("<h1>**************************** <br /> logout.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/logout.php'); 
-                                ?>
-                                </p>
-                                <p>
-                                    <?php 
-                                    echo("<h1>**************************** <br /> db.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/db.php'); 
-                                ?>
-                                </p>
-                                <p>
-                                    <?php 
-                                    echo("<h1>**************************** <br /> process_login.php <br /> ****************************</h1><br />");
-                                    show_source('assets/classes/process_login.php'); 
-                                ?>
-                                </p>
-
-                            </div>
-                        </div>
-                   </div>
+                    </div>
+                </div>
             </div>
-    </div>
-    
+        </div>
 
 
 
-                    <!-- /.container -->
+
+        <!-- /.container -->
 
 
-                    <!-- Bootstrap core JavaScript
+        <!-- Bootstrap core JavaScript
     ================================================== -->
-                    <!-- Placed at the end of the document so the pages load faster -->
-                    <script>
-                        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script>
+            window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
 
-                    </script>
-                    <script src="../../dist/js/bootstrap.min.js"></script>
-                    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-                    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        </script>
+        <script src="../../dist/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
+
 </html>
