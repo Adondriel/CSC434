@@ -20,7 +20,9 @@
                     <li <?php if($currentPage=="assignment4.php" ){echo( "class='active'");} ?>><a href="assignment4.php">Assignment 4</a></li>
                     <li <?php if($currentPage=="assignment5.php" ){echo( "class='active'");} ?>><a href="assignment5.php">Assignment 5</a></li>
                     <li <?php if($currentPage=="assignment6.php" ){echo( "class='active'");} ?>><a href="assignment6.php">Assignment 6</a></li>
-                    <li <?php if($currentPage=="assignment7.php" ){echo( "class='active'");} ?>><a href="assignment7.php">Assignment 7</a></li>                    
+                    <li <?php if($currentPage=="assignment7.php" ){echo( "class='active'");} ?>><a href="assignment7.php">Assignment 7</a></li>
+                    <li <?php if($currentPage=="assignment8.php" ){echo( "class='active'");} ?>><a href="assignment8.php">Assignment 8</a></li>                    
+
                 </ul>
             </div>
             <!--/.nav-collapse -->

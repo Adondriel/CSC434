@@ -28,13 +28,7 @@
     <![endif]-->
     <!-- FontAwesome Icon CDN include -->
     <script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
-    <?php
-        include_once("assets/classes/db.php");
-        include_once("assets/classes/functions.php"); 
-    
-        sec_session_start();
-    ?>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </head>
 
@@ -118,6 +112,17 @@
                                         document.write(exampleData.itemsInWallet[i] + "<br>");
                                     }
                                 }
+
+                            </script>
+                            <script>
+                                document.write("Before: <br>");
+                                //printData function has the for loop inside of it.
+                                printData();
+
+                                setDataPaycheck(1.50);
+
+                                document.write("<br><br>After: <br>");
+                                printData();
 
                             </script>
                         </textarea>
