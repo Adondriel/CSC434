@@ -3,6 +3,22 @@ var app = angular.module('myApp', [])
     .controller('myController', ['$scope', function ($scope) {
         $scope.projectList = {
             "mainProject": {
+                "title": "Assignment 8",
+                "desc": "Displays different examples using JS",
+                "img": "assets/images/html5.jpg",
+                "links": [
+                        {
+                            "url": "assignment8.php",
+                            "urlWords": "Assignment 8 Page"
+                    },
+                        {
+                            "url": "https://github.com/Adondriel/CSC434",
+                            "urlWords": "Github Repository"
+                    }
+                ]
+            },
+            "projects": [
+                {
                 "title": "Assignment 7",
                 "desc": "Uses PHP and MySQL to create a SECURE login form, logs out after 30 mins, and everything is hashed securely.",
                 "img": "assets/images/html5.jpg",
@@ -16,8 +32,7 @@ var app = angular.module('myApp', [])
                             "urlWords": "Github Repository"
                     }
                 ]
-            },
-            "projects": [
+                },
                 {
                     "title": "Assignment 6",
                     "desc": "Uses forms to create tables, insert into tables, and update data from those tables.",
