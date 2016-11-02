@@ -1,4 +1,3 @@
-<script>
 (function() {
  
         // Create the supports object
@@ -33,4 +32,3 @@
     }
  
 })();
-</script>
