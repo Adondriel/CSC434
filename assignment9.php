@@ -29,6 +29,7 @@
 	<!-- FontAwesome Icon CDN include -->
 	<script src="https://use.fontawesome.com/9b7180a9fe.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="assets/js/assignment9.js"></script>
 
 </head>
 
@@ -46,9 +47,9 @@
 								<fieldset>
 									<legend>Legend</legend>
 									<div id="jsNumArea" class="form-group">
-										<label for="jsNumField" class="col-lg-2 control-label">Number: </label>
+										<label for="jsNumField" class="col-lg-2 control-label">Number(1-100): </label>
 										<div class="col-lg-10">
-											<input id="jsNumField" type="number" class="form-control">
+											<input id="jsNumField" type="text" class="form-control">
 										</div>
 									</div>
 									<div id="jsRealArea" class="form-group">
@@ -66,7 +67,7 @@
 									<div id="jsDateArea" class="form-group">
 										<label for="jsDateField" class="col-lg-2 control-label">Date: </label>
 										<div class="col-lg-10">
-											<input id="jsDateField" type="date" class="form-control">
+											<input id="jsDateField" type="text" class="form-control">
 										</div>
 									</div>
 									<div id="jsAlphaNumArea" class="form-group">
@@ -76,7 +77,7 @@
 										</div>
 									</div>
 									<div class="col-lg-10 col-lg-offset-2">
-										<button id="jsSubmit" onclick="validateJS();" class="btn btn-primary">Submit</button>
+										<button id="jsSubmit" type="button" onclick="validateJS();" class="btn btn-primary">Submit</button>
 									</div>
 								</fieldset>
 							</form>
