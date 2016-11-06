@@ -31,19 +31,51 @@ function validateJS() {
 		$('#jsAlphaArea').addClass('has-error');
 	}
 
-	//    /([0-9][0-9]\/)\1([0-9][0-9][^.])/
-	// simplified version: (([0-9][0-9])\/)\1\2[^.] 
+	//
+	// regex: /(([0-9][0-9])\/)\1\2/
 	// just learned you can actually make subgroups within the one group, and still reference back to them. \1 is the whole of ##/ format while \2 is just the ## format, so this says, match a ##/ then another ##/ then a ## and make sure there are no other characters after the last set of ##.
 	// matches the exact format of ##/##/## 
-	// ##/## is false.
-	// ##/##/##/## is false.
-	if (typeof dateField === 'string' && dateField.match(/(([0-9][0-9])\/)\1\2[^.]/)) {
+	if (typeof dateField === 'string' && dateField.match(/(([0-9][0-9])\/)\1\2/)) {
 		$('#jsDateArea').removeClass('has-error');
 	} else {
 		$('#jsDateArea').addClass('has-error');
 	}
 
+	//check to make sure it is alphaNumeric characters.
+	if (typeof alphaNumField === 'string' && alphaNumField.match(/^[A-F0-9]+$/)) {
+		$('#jsAlphaNumArea').removeClass('has-error');
+	} else {
+		$('#jsAlphaNumArea').addClass('has-error');
+	}
+}
 
+$('#phpValidation').submit(function (e) {
+	e.preventDefault();
+});
 
-
+function validatePHP() {
+	$.ajax({
+		url: "assets/classes/fsa9.php",
+		type: "POST",
+		data: $('#phpValidation').serialize(),
+		dataType: 'json',
+		cache: false,
+		success: function (data) {
+			if (data.error) {
+				$('#errorAlertBox').text("");
+				for (var i = 0; i < data.errorMsg.length; i++) {
+					$('#errorAlertBox').append("<p>" + data.errorMsg[i] + "</p>");
+				}
+				$('#errorAlertBox').removeClass("hidden");
+				$('#successAlertBox').addClass("hidden");
+			} else {
+				$('#errorAlertBox').addClass("hidden");
+				$('#successAlertBox').removeClass("hidden");
+			}
+			//console.info(data);
+		},
+		error: function (data) {
+			console.info("there was error.");
+		}
+	});
 }
