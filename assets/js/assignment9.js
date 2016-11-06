@@ -69,6 +69,7 @@ function validatePHP() {
 				$('#errorAlertBox').removeClass("hidden");
 				$('#successAlertBox').addClass("hidden");
 			} else {
+				console.info("no error");
 				$('#errorAlertBox').addClass("hidden");
 				$('#successAlertBox').removeClass("hidden");
 			}

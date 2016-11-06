@@ -60,7 +60,7 @@ if(isset($_POST['phpNumField'])){
 			$errorMsg[] = "There was an issue with the Alpha Numeric field.";
 		}
 	
-		if($errorMsg != ""){
+		if(count($errorMsg) > 0){
 			$error = true;
 		}
 	
