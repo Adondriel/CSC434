@@ -33,6 +33,7 @@ function validateJS() {
 
 	//
 	// regex: /(([0-9][0-9])\/)\1\2/
+	// old regex, not used anymore, replaced with a stricter regex expression, below.
 	// just learned you can actually make subgroups within the one group, and still reference back to them. \1 is the whole of ##/ format while \2 is just the ## format, so this says, match a ##/ then another ##/ then a ## and make sure there are no other characters after the last set of ##.
 	// matches the exact format of ##/##/## 
 	console.info(dateField.split("/").length - 1);
