@@ -53,7 +53,6 @@ if(isset($_POST['phpNumField'])){
 		if (!preg_match('/^[a-zA-Z]+$/', $alphaField)){
 			$errorMsg[] = "There was an issue with the Alpha field." . $alphaField;
 		}
-		$errorMsg[]= substr_count($dateField, "/");
 		if (substr_count($dateField, "/") > 2 || !preg_match('/[0-9]{1,2}\/[0-9]{2}\/[0-9]{2}/', $dateField)){
 			$errorMsg[] = "There was an issue with the Date field.";
 		}
