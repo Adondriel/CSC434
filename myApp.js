@@ -3,6 +3,16 @@ var app = angular.module('myApp', [])
 	.controller('myController', ['$scope', function ($scope) {
 		$scope.projectList = {
 			"mainProject": {
+				"title": "Assignment 10",
+				"desc": "Write summary for analysis of 'A Look at the Dynamics of theJavaScript Package Ecosystem'",
+				"img": "assets/images/html5.jpg",
+				"links": [{
+					"url": "https://docs.google.com/document/d/1MNVsXqagFxyxXrIYlAOPWbhjM6Ubyg0YBN0HlFyHE5I/edit?usp=sharing",
+					"urlWords": "Google Doc"
+				}]
+			},
+			"projects": [{
+			"mainProject": {
 				"title": "Assignment 9",
 				"desc": "Form validation, using both JS and PHP",
 				"img": "assets/images/html5.jpg",
@@ -13,8 +23,7 @@ var app = angular.module('myApp', [])
 					"url": "https://github.com/Adondriel/CSC434",
 					"urlWords": "Github Repository"
 				}]
-			},
-			"projects": [{
+			}, {
 				"title": "Assignment 8",
 				"desc": "Displays different examples using JS",
 				"img": "assets/images/html5.jpg",
